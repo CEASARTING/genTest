@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wiipu.po.AutowineWineBuyMapper">
+  <resultMap id="BaseResultMap" type="com.wiipu.po.AutowineWineBuy">
+    <id column="wine_buy_id" jdbcType="INTEGER" property="wineBuyId" />
+    <result column="wine_buy_department" jdbcType="INTEGER" property="wineBuyDepartment" />
+    <result column="wine_buy_admin" jdbcType="INTEGER" property="wineBuyAdmin" />
+    <result column="wine_buy_addtime" jdbcType="BIGINT" property="wineBuyAddtime" />
+    <result column="wine_buy_expecttime" jdbcType="BIGINT" property="wineBuyExpecttime" />
+    <result column="wine_buy_status" jdbcType="SMALLINT" property="wineBuyStatus" />
+    <result column="wine_buy_wine" jdbcType="INTEGER" property="wineBuyWine" />
+    <result column="wine_buy_accout" jdbcType="INTEGER" property="wineBuyAccout" />
+    <result column="wine_buy_material" jdbcType="INTEGER" property="wineBuyMaterial" />
+    <result column="wine_buy_supplier" jdbcType="INTEGER" property="wineBuySupplier" />
+    <result column="wine_buy_order" jdbcType="VARCHAR" property="wineBuyOrder" />
+    <result column="wine_buy_price" jdbcType="DECIMAL" property="wineBuyPrice" />
+    <result column="wine_buy_totalprice" jdbcType="DECIMAL" property="wineBuyTotalprice" />
+    <result column="wine_buy_bill" jdbcType="INTEGER" property="wineBuyBill" />
+    <result column="wine_buy_capacity" jdbcType="INTEGER" property="wineBuyCapacity" />
+    <result column="wine_buy_compact" jdbcType="VARCHAR" property="wineBuyCompact" />
+    <result column="wine_buy_addadmin" jdbcType="INTEGER" property="wineBuyAddadmin" />
+    <result column="wine_buy_buytime" jdbcType="BIGINT" property="wineBuyBuytime" />
+    <result column="wine_buy_fat" jdbcType="INTEGER" property="wineBuyFat" />
+    <result column="wine_buy_checkadmin" jdbcType="INTEGER" property="wineBuyCheckadmin" />
+    <result column="wine_buy_checktime" jdbcType="BIGINT" property="wineBuyChecktime" />
+    <result column="wine_buy_checkopinion" jdbcType="VARCHAR" property="wineBuyCheckopinion" />
+    <result column="wine_buy_checkstatus" jdbcType="INTEGER" property="wineBuyCheckstatus" />
+    <result column="wine_buy_inhouse_status" jdbcType="INTEGER" property="wineBuyInhouseStatus" />
+    <result column="wine_buy_inhouse_amount" jdbcType="INTEGER" property="wineBuyInhouseAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    wine_buy_id, wine_buy_department, wine_buy_admin, wine_buy_addtime, wine_buy_expecttime, 
+    wine_buy_status, wine_buy_wine, wine_buy_accout, wine_buy_material, wine_buy_supplier, 
+    wine_buy_order, wine_buy_price, wine_buy_totalprice, wine_buy_bill, wine_buy_capacity, 
+    wine_buy_compact, wine_buy_addadmin, wine_buy_buytime, wine_buy_fat, wine_buy_checkadmin, 
+    wine_buy_checktime, wine_buy_checkopinion, wine_buy_checkstatus, wine_buy_inhouse_status, 
+    wine_buy_inhouse_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.wiipu.po.AutowineWineBuyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from autowine_wine_buy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from autowine_wine_buy
+    where wine_buy_id = #{wineBuyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from autowine_wine_buy
+    where wine_buy_id = #{wineBuyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wiipu.po.AutowineWineBuyExample">
+    delete from autowine_wine_buy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wiipu.po.AutowineWineBuy">
+    <selectKey keyProperty="wineBuyId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into autowine_wine_buy (wine_buy_department, wine_buy_admin, 
+      wine_buy_addtime, wine_buy_expecttime, wine_buy_status, 
+      wine_buy_wine, wine_buy_accout, wine_buy_material, 
+      wine_buy_supplier, wine_buy_order, wine_buy_price, 
+      wine_buy_totalprice, wine_buy_bill, wine_buy_capacity, 
+      wine_buy_compact, wine_buy_addadmin, wine_buy_buytime, 
+      wine_buy_fat, wine_buy_checkadmin, wine_buy_checktime, 
+      wine_buy_checkopinion, wine_buy_checkstatus, 
+      wine_buy_inhouse_status, wine_buy_inhouse_amount
+      )
+    values (#{wineBuyDepartment,jdbcType=INTEGER}, #{wineBuyAdmin,jdbcType=INTEGER}, 
+      #{wineBuyAddtime,jdbcType=BIGINT}, #{wineBuyExpecttime,jdbcType=BIGINT}, #{wineBuyStatus,jdbcType=SMALLINT}, 
+      #{wineBuyWine,jdbcType=INTEGER}, #{wineBuyAccout,jdbcType=INTEGER}, #{wineBuyMaterial,jdbcType=INTEGER}, 
+      #{wineBuySupplier,jdbcType=INTEGER}, #{wineBuyOrder,jdbcType=VARCHAR}, #{wineBuyPrice,jdbcType=DECIMAL}, 
+      #{wineBuyTotalprice,jdbcType=DECIMAL}, #{wineBuyBill,jdbcType=INTEGER}, #{wineBuyCapacity,jdbcType=INTEGER}, 
+      #{wineBuyCompact,jdbcType=VARCHAR}, #{wineBuyAddadmin,jdbcType=INTEGER}, #{wineBuyBuytime,jdbcType=BIGINT}, 
+      #{wineBuyFat,jdbcType=INTEGER}, #{wineBuyCheckadmin,jdbcType=INTEGER}, #{wineBuyChecktime,jdbcType=BIGINT}, 
+      #{wineBuyCheckopinion,jdbcType=VARCHAR}, #{wineBuyCheckstatus,jdbcType=INTEGER}, 
+      #{wineBuyInhouseStatus,jdbcType=INTEGER}, #{wineBuyInhouseAmount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wiipu.po.AutowineWineBuy">
+    <selectKey keyProperty="wineBuyId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into autowine_wine_buy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wineBuyDepartment != null">
+        wine_buy_department,
+      </if>
+      <if test="wineBuyAdmin != null">
+        wine_buy_admin,
+      </if>
+      <if test="wineBuyAddtime != null">
+        wine_buy_addtime,
+      </if>
+      <if test="wineBuyExpecttime != null">
+        wine_buy_expecttime,
+      </if>
+      <if test="wineBuyStatus != null">
+        wine_buy_status,
+      </if>
+      <if test="wineBuyWine != null">
+        wine_buy_wine,
+      </if>
+      <if test="wineBuyAccout != null">
+        wine_buy_accout,
+      </if>
+      <if test="wineBuyMaterial != null">
+        wine_buy_material,
+      </if>
+      <if test="wineBuySupplier != null">
+        wine_buy_supplier,
+      </if>
+      <if test="wineBuyOrder != null">
+        wine_buy_order,
+      </if>
+      <if test="wineBuyPrice != null">
+        wine_buy_price,
+      </if>
+      <if test="wineBuyTotalprice != null">
+        wine_buy_totalprice,
+      </if>
+      <if test="wineBuyBill != null">
+        wine_buy_bill,
+      </if>
+      <if test="wineBuyCapacity != null">
+        wine_buy_capacity,
+      </if>
+      <if test="wineBuyCompact != null">
+        wine_buy_compact,
+      </if>
+      <if test="wineBuyAddadmin != null">
+        wine_buy_addadmin,
+      </if>
+      <if test="wineBuyBuytime != null">
+        wine_buy_buytime,
+      </if>
+      <if test="wineBuyFat != null">
+        wine_buy_fat,
+      </if>
+      <if test="wineBuyCheckadmin != null">
+        wine_buy_checkadmin,
+      </if>
+      <if test="wineBuyChecktime != null">
+        wine_buy_checktime,
+      </if>
+      <if test="wineBuyCheckopinion != null">
+        wine_buy_checkopinion,
+      </if>
+      <if test="wineBuyCheckstatus != null">
+        wine_buy_checkstatus,
+      </if>
+      <if test="wineBuyInhouseStatus != null">
+        wine_buy_inhouse_status,
+      </if>
+      <if test="wineBuyInhouseAmount != null">
+        wine_buy_inhouse_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wineBuyDepartment != null">
+        #{wineBuyDepartment,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAdmin != null">
+        #{wineBuyAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAddtime != null">
+        #{wineBuyAddtime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyExpecttime != null">
+        #{wineBuyExpecttime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyStatus != null">
+        #{wineBuyStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="wineBuyWine != null">
+        #{wineBuyWine,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAccout != null">
+        #{wineBuyAccout,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyMaterial != null">
+        #{wineBuyMaterial,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuySupplier != null">
+        #{wineBuySupplier,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyOrder != null">
+        #{wineBuyOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyPrice != null">
+        #{wineBuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wineBuyTotalprice != null">
+        #{wineBuyTotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="wineBuyBill != null">
+        #{wineBuyBill,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCapacity != null">
+        #{wineBuyCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCompact != null">
+        #{wineBuyCompact,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyAddadmin != null">
+        #{wineBuyAddadmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyBuytime != null">
+        #{wineBuyBuytime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyFat != null">
+        #{wineBuyFat,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCheckadmin != null">
+        #{wineBuyCheckadmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyChecktime != null">
+        #{wineBuyChecktime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyCheckopinion != null">
+        #{wineBuyCheckopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyCheckstatus != null">
+        #{wineBuyCheckstatus,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyInhouseStatus != null">
+        #{wineBuyInhouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyInhouseAmount != null">
+        #{wineBuyInhouseAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wiipu.po.AutowineWineBuyExample" resultType="java.lang.Long">
+    select count(*) from autowine_wine_buy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update autowine_wine_buy
+    <set>
+      <if test="record.wineBuyId != null">
+        wine_buy_id = #{record.wineBuyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyDepartment != null">
+        wine_buy_department = #{record.wineBuyDepartment,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyAdmin != null">
+        wine_buy_admin = #{record.wineBuyAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyAddtime != null">
+        wine_buy_addtime = #{record.wineBuyAddtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.wineBuyExpecttime != null">
+        wine_buy_expecttime = #{record.wineBuyExpecttime,jdbcType=BIGINT},
+      </if>
+      <if test="record.wineBuyStatus != null">
+        wine_buy_status = #{record.wineBuyStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.wineBuyWine != null">
+        wine_buy_wine = #{record.wineBuyWine,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyAccout != null">
+        wine_buy_accout = #{record.wineBuyAccout,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyMaterial != null">
+        wine_buy_material = #{record.wineBuyMaterial,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuySupplier != null">
+        wine_buy_supplier = #{record.wineBuySupplier,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyOrder != null">
+        wine_buy_order = #{record.wineBuyOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wineBuyPrice != null">
+        wine_buy_price = #{record.wineBuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wineBuyTotalprice != null">
+        wine_buy_totalprice = #{record.wineBuyTotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wineBuyBill != null">
+        wine_buy_bill = #{record.wineBuyBill,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyCapacity != null">
+        wine_buy_capacity = #{record.wineBuyCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyCompact != null">
+        wine_buy_compact = #{record.wineBuyCompact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wineBuyAddadmin != null">
+        wine_buy_addadmin = #{record.wineBuyAddadmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyBuytime != null">
+        wine_buy_buytime = #{record.wineBuyBuytime,jdbcType=BIGINT},
+      </if>
+      <if test="record.wineBuyFat != null">
+        wine_buy_fat = #{record.wineBuyFat,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyCheckadmin != null">
+        wine_buy_checkadmin = #{record.wineBuyCheckadmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyChecktime != null">
+        wine_buy_checktime = #{record.wineBuyChecktime,jdbcType=BIGINT},
+      </if>
+      <if test="record.wineBuyCheckopinion != null">
+        wine_buy_checkopinion = #{record.wineBuyCheckopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wineBuyCheckstatus != null">
+        wine_buy_checkstatus = #{record.wineBuyCheckstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyInhouseStatus != null">
+        wine_buy_inhouse_status = #{record.wineBuyInhouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.wineBuyInhouseAmount != null">
+        wine_buy_inhouse_amount = #{record.wineBuyInhouseAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update autowine_wine_buy
+    set wine_buy_id = #{record.wineBuyId,jdbcType=INTEGER},
+      wine_buy_department = #{record.wineBuyDepartment,jdbcType=INTEGER},
+      wine_buy_admin = #{record.wineBuyAdmin,jdbcType=INTEGER},
+      wine_buy_addtime = #{record.wineBuyAddtime,jdbcType=BIGINT},
+      wine_buy_expecttime = #{record.wineBuyExpecttime,jdbcType=BIGINT},
+      wine_buy_status = #{record.wineBuyStatus,jdbcType=SMALLINT},
+      wine_buy_wine = #{record.wineBuyWine,jdbcType=INTEGER},
+      wine_buy_accout = #{record.wineBuyAccout,jdbcType=INTEGER},
+      wine_buy_material = #{record.wineBuyMaterial,jdbcType=INTEGER},
+      wine_buy_supplier = #{record.wineBuySupplier,jdbcType=INTEGER},
+      wine_buy_order = #{record.wineBuyOrder,jdbcType=VARCHAR},
+      wine_buy_price = #{record.wineBuyPrice,jdbcType=DECIMAL},
+      wine_buy_totalprice = #{record.wineBuyTotalprice,jdbcType=DECIMAL},
+      wine_buy_bill = #{record.wineBuyBill,jdbcType=INTEGER},
+      wine_buy_capacity = #{record.wineBuyCapacity,jdbcType=INTEGER},
+      wine_buy_compact = #{record.wineBuyCompact,jdbcType=VARCHAR},
+      wine_buy_addadmin = #{record.wineBuyAddadmin,jdbcType=INTEGER},
+      wine_buy_buytime = #{record.wineBuyBuytime,jdbcType=BIGINT},
+      wine_buy_fat = #{record.wineBuyFat,jdbcType=INTEGER},
+      wine_buy_checkadmin = #{record.wineBuyCheckadmin,jdbcType=INTEGER},
+      wine_buy_checktime = #{record.wineBuyChecktime,jdbcType=BIGINT},
+      wine_buy_checkopinion = #{record.wineBuyCheckopinion,jdbcType=VARCHAR},
+      wine_buy_checkstatus = #{record.wineBuyCheckstatus,jdbcType=INTEGER},
+      wine_buy_inhouse_status = #{record.wineBuyInhouseStatus,jdbcType=INTEGER},
+      wine_buy_inhouse_amount = #{record.wineBuyInhouseAmount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wiipu.po.AutowineWineBuy">
+    update autowine_wine_buy
+    <set>
+      <if test="wineBuyDepartment != null">
+        wine_buy_department = #{wineBuyDepartment,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAdmin != null">
+        wine_buy_admin = #{wineBuyAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAddtime != null">
+        wine_buy_addtime = #{wineBuyAddtime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyExpecttime != null">
+        wine_buy_expecttime = #{wineBuyExpecttime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyStatus != null">
+        wine_buy_status = #{wineBuyStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="wineBuyWine != null">
+        wine_buy_wine = #{wineBuyWine,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyAccout != null">
+        wine_buy_accout = #{wineBuyAccout,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyMaterial != null">
+        wine_buy_material = #{wineBuyMaterial,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuySupplier != null">
+        wine_buy_supplier = #{wineBuySupplier,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyOrder != null">
+        wine_buy_order = #{wineBuyOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyPrice != null">
+        wine_buy_price = #{wineBuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wineBuyTotalprice != null">
+        wine_buy_totalprice = #{wineBuyTotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="wineBuyBill != null">
+        wine_buy_bill = #{wineBuyBill,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCapacity != null">
+        wine_buy_capacity = #{wineBuyCapacity,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCompact != null">
+        wine_buy_compact = #{wineBuyCompact,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyAddadmin != null">
+        wine_buy_addadmin = #{wineBuyAddadmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyBuytime != null">
+        wine_buy_buytime = #{wineBuyBuytime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyFat != null">
+        wine_buy_fat = #{wineBuyFat,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyCheckadmin != null">
+        wine_buy_checkadmin = #{wineBuyCheckadmin,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyChecktime != null">
+        wine_buy_checktime = #{wineBuyChecktime,jdbcType=BIGINT},
+      </if>
+      <if test="wineBuyCheckopinion != null">
+        wine_buy_checkopinion = #{wineBuyCheckopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="wineBuyCheckstatus != null">
+        wine_buy_checkstatus = #{wineBuyCheckstatus,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyInhouseStatus != null">
+        wine_buy_inhouse_status = #{wineBuyInhouseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="wineBuyInhouseAmount != null">
+        wine_buy_inhouse_amount = #{wineBuyInhouseAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wine_buy_id = #{wineBuyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wiipu.po.AutowineWineBuy">
+    update autowine_wine_buy
+    set wine_buy_department = #{wineBuyDepartment,jdbcType=INTEGER},
+      wine_buy_admin = #{wineBuyAdmin,jdbcType=INTEGER},
+      wine_buy_addtime = #{wineBuyAddtime,jdbcType=BIGINT},
+      wine_buy_expecttime = #{wineBuyExpecttime,jdbcType=BIGINT},
+      wine_buy_status = #{wineBuyStatus,jdbcType=SMALLINT},
+      wine_buy_wine = #{wineBuyWine,jdbcType=INTEGER},
+      wine_buy_accout = #{wineBuyAccout,jdbcType=INTEGER},
+      wine_buy_material = #{wineBuyMaterial,jdbcType=INTEGER},
+      wine_buy_supplier = #{wineBuySupplier,jdbcType=INTEGER},
+      wine_buy_order = #{wineBuyOrder,jdbcType=VARCHAR},
+      wine_buy_price = #{wineBuyPrice,jdbcType=DECIMAL},
+      wine_buy_totalprice = #{wineBuyTotalprice,jdbcType=DECIMAL},
+      wine_buy_bill = #{wineBuyBill,jdbcType=INTEGER},
+      wine_buy_capacity = #{wineBuyCapacity,jdbcType=INTEGER},
+      wine_buy_compact = #{wineBuyCompact,jdbcType=VARCHAR},
+      wine_buy_addadmin = #{wineBuyAddadmin,jdbcType=INTEGER},
+      wine_buy_buytime = #{wineBuyBuytime,jdbcType=BIGINT},
+      wine_buy_fat = #{wineBuyFat,jdbcType=INTEGER},
+      wine_buy_checkadmin = #{wineBuyCheckadmin,jdbcType=INTEGER},
+      wine_buy_checktime = #{wineBuyChecktime,jdbcType=BIGINT},
+      wine_buy_checkopinion = #{wineBuyCheckopinion,jdbcType=VARCHAR},
+      wine_buy_checkstatus = #{wineBuyCheckstatus,jdbcType=INTEGER},
+      wine_buy_inhouse_status = #{wineBuyInhouseStatus,jdbcType=INTEGER},
+      wine_buy_inhouse_amount = #{wineBuyInhouseAmount,jdbcType=INTEGER}
+    where wine_buy_id = #{wineBuyId,jdbcType=INTEGER}
+  </update>
+</mapper>
